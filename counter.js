@@ -90,7 +90,8 @@ function counter(options) {
 
     mongodb.MongoClient.connect(options.mongoUrl, function (err, _db) {
       if (err) return done(err);
-      collection = _db.collection(options.collectionName || 'counters');
+      var db = _db.db(options.name)
+      collection = db.collection(options.collectionName || 'counters');
       return done(null, collection);
     });
   }
