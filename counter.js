@@ -74,9 +74,8 @@ function counter(options) {
   function set(counterName, seq, done) {
     getCollection(function (err, collection) {
       if (err) return done(err);
-      collection.findAndModify(
+      collection.findOneAndUpdate(
         {_id: counterName},
-        {_id: 1},
         {$set: {seq: seq}},
         {new: true, upsert: true},
         function (err, doc) {
