@@ -47,9 +47,8 @@ function counter(options) {
     if (typeof(by) == 'function' || typeof(by) == 'undefined') { done = by; by = 1; }
     getCollection(function (err, collection) {
       if (err) return done(err);
-      collection.findAndModify(
+      collection.findOneAndUpdate(
         {_id: counterName},
-        {_id: 1},
         {$inc: {seq: by}},
         {upsert: true, new: true},
         function (err, doc) {
