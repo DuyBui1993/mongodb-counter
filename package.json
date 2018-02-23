@@ -1,17 +1,42 @@
 {
   "name": "mongodb-counter",
   "description": "Auto-increment counters for MongoDB",
-  "keywords": ["auto-increment", "counters", "counter", "mongodb"],
+  "keywords": [
+    "auto-increment",
+    "counters",
+    "counter",
+    "mongodb"
+  ],
   "homepage": "https://github.com/like-falling-leaves/mongodb-counter",
-  "bugs": { "url": "https://github.com/like-falling-leaves/mongodb-counter/issues" },
+  "bugs": {
+    "url": "https://github.com/like-falling-leaves/mongodb-counter/issues"
+  },
   "license": "MIT",
-  "author": {"name": "Like FallingLeaves", "email": "likefallingleaves@gmail.com"},
+  "author": {
+    "name": "Like FallingLeaves",
+    "email": "likefallingleaves@gmail.com"
+  },
   "main": "./counter.js",
-  "maintainers": [{"name": "Like FallingLeaves", "email": "likefallingleaves@gmail.com"}],
+  "maintainers": [
+    {
+      "name": "Like FallingLeaves",
+      "email": "likefallingleaves@gmail.com"
+    }
+  ],
   "version": "0.0.4",
-  "repository": { "type": "git", "url": "git://github.com/like-falling-leaves/mongodb-counter.git" },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/like-falling-leaves/mongodb-counter.git"
+  },
   "readmeFilename": "README.md",
-  "dependencies": { "mongodb" : "^2.2.0" },
-  "devDependencies": { "mocha": "1.*" },
-  "scripts": { "test": "mocha test/" }
+  "dependencies": {
+    "mongodb": "^2.2.0",
+    "mongoose": "^5.0.6"
+  },
+  "devDependencies": {
+    "mocha": "1.*"
+  },
+  "scripts": {
+    "test": "mocha test/"
+  }
 }
