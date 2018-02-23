@@ -95,7 +95,11 @@ function counter(options) {
     }
 
     mongoose.connect(options.mongoUrl);
-    collection = mongoose.model(options.collectionName || 'counter');
+    try {
+      collection = mongoose.model(options.collectionName || 'counter');
+    } catch (error) {
+      collection = mongoose.model(options.collectionName || 'counter', new mongoose.Schema({seq: Number}));
+    }
     return done(null, collection);
   }
 }
