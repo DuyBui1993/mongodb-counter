@@ -96,7 +96,7 @@ function counter(options) {
     try {
       collection = mongoose.model(options.collectionName || 'counter');
     } catch (error) {
-      collection = mongoose.model(options.collectionName || 'counter', new mongoose.Schema({seq: Number, _id: String}));
+      collection = mongoose.model(options.collectionName || 'counter', new mongoose.Schema({seq: Number, _id: String}), options.collectionName || 'counter');
     }
     return done(null, collection);
   }
