@@ -14,7 +14,7 @@ function createCounters(options) {
       getNextUniqueId: counters.getNextUniqueId.bind(null, name, uniqueIdPool, callbacks)
     };
   }
-}
+} 
 
 function counter(options) {
   var collection;
@@ -96,4 +96,3 @@ function counter(options) {
     });
   }
 }
-
