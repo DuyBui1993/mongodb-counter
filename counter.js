@@ -1,4 +1,5 @@
 var mongodb = require('mongodb');
+var mongoose = require('mongoose');
 module.exports = counter;
 module.exports.createCounters = createCounters;
 
@@ -14,7 +15,7 @@ function createCounters(options) {
       getNextUniqueId: counters.getNextUniqueId.bind(null, name, uniqueIdPool, callbacks)
     };
   }
-} 
+}
 
 function counter(options) {
   var collection;
@@ -51,7 +52,9 @@ function counter(options) {
         {_id: 1},
         {$inc: {seq: by}},
         {upsert: true, new: true},
-        function (err, doc) { return done && done(err, doc && doc.seq); }
+        function (err, doc) {
+          return done && done(err, doc && doc.seq);
+        }
       );
     });
   }
@@ -64,7 +67,8 @@ function counter(options) {
   function get(counterName, done) {
     getCollection(function (err, collection) {
       if (err) return done(err);
-      collection.findOne({_id: counterName}, function (err, val) { return done(err, val && val.seq); });
+      collection.findOne({_id: counterName}, function (err, val) {
+        return done(err, val && val.seq); });
     });
   }
 
@@ -76,7 +80,9 @@ function counter(options) {
         {_id: 1},
         {$set: {seq: seq}},
         {new: true, upsert: true},
-        function (err, doc) { return done && done(err, doc && doc.seq); }
+        function (err, doc) {
+          return done && done(err, doc && doc.seq);
+        }
       );
     });
   }
@@ -88,11 +94,10 @@ function counter(options) {
       return done(null, collection);
     }
 
-    mongodb.MongoClient.connect(options.mongoUrl, function (err, _db) {
-      if (err) return done(err);
-      var db = _db.db(options.name)
-      collection = db.collection(options.collectionName || 'counters');
-      return done(null, collection);
-    });
+    mongoose.connect(options.mongoUrl);
+    collection = mongoose.model(options.collectionName || 'counter', new mongoose.Schema({
+      seq: Number
+    }));
+    return done(null, collection);
   }
 }
